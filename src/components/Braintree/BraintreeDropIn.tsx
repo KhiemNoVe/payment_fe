@@ -16,6 +16,9 @@ function BraintreeDropIn(props: any) {
         {
           authorization: token,
           container: '#braintree-drop-in-div',
+          paypal: {
+            flow: 'vault',
+          },
         },
         function (error, instance) {
           if (error) console.error(error);
@@ -65,6 +68,7 @@ function BraintreeDropIn(props: any) {
             if (braintreeInstance) {
               braintreeInstance.requestPaymentMethod(
                 (error: any, payload: any) => {
+                  console.log('🚀 ~ BraintreeDropIn ~ payload:', payload);
                   if (error) {
                     console.error(error);
                   } else {
